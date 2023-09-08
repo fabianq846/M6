@@ -1,0 +1,7 @@
+<!-- app/views/applications/new.html.erb -->
+<%= form_for @application do |f| %>
+  <%= f.label :message, "Mensaje" %>
+  <%= f.text_area :message %>
+  <%= f.hidden_field :job_offer_id, value: params[:job_offer_id] %>
+  <%= f.submit "Postular" %>
+<% end %>

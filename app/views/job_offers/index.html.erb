@@ -1,0 +1,7 @@
+<!-- app/views/job_offers/index.html.erb -->
+<h1>Ofertas de trabajo</h1>
+
+<% @job_offers.each do |offer| %>
+  <h2><%= link_to offer.title, job_offer_path(offer) %></h2>
+  <p><%= offer.description.truncate(100) %>...</p>
+<% end %>
