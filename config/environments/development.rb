@@ -75,8 +75,8 @@ Rails.application.configure do
   domain: "example.com",
   authentication: "plain",
   enable_starttls_auto: true,
-  user_name: "YOUR_EMAIL@example.com",
-  password: "YOUR_PASSWORD"
+  user_name: "esteban@gmail.com",
+  password: "123456"
 }
 config.action_mailer.raise_delivery_errors = true
 

@@ -16,7 +16,11 @@ def show
       render :edit
     end
   end
-  
+  # app/controllers/users_controller.rb
+  def applications
+    @applications = current_user.applications
+  end
+
   private
   
   def user_params

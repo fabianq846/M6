@@ -10,6 +10,17 @@ class JobPostingsController < ApplicationController
   def show
   end
 
+  def apply
+    @job_posting = JobPosting.find(params[:id])
+    current_user.job_postings << @job_posting
+  
+    # Enviar notificación a Esteban
+    # Aquí puedes implementar la notificación, ya sea por correo electrónico, notificación interna, etc.
+    NotificationMailer.new_application(Application.last).deliver_now
+
+    redirect_to @job_posting, notice: 'You have successfully applied!'
+  end
+
   # GET /job_postings/new
   def new
     @job_posting = JobPosting.new
