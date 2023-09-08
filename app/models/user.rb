@@ -4,13 +4,21 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-         has_many :applications
-         has_many :job_postings, through: :applications
-         has_one_attached :photo # Para ActiveStorage y la foto de perfil
+  has_one_attached :photo # Para ActiveStorage y la foto de perfil
 
-         has_many :applications
-         has_many :job_offers
-end
-def admin?
-  admin
+  has_many :applications
+  has_many :job_postings, through: :applications
+  has_many :job_offers
+
+  before_validation :default_values
+
+  def admin?
+    admin
+  end
+
+  private
+
+  def default_values
+    self.admin ||= false
+  end
 end
