@@ -6,14 +6,20 @@ def new
   end
   
   def create
-    @application = current_user.applications.build(application_params)
+    @application = current_user.applications.new(job_posting_id: params[:job_posting_id])
+  
     if @application.save
-      NotificationMailer.new_application(@application).deliver_now
-      redirect_to applications_path, notice: 'Postulación enviada'
+      # Envía la notificación a Esteban aquí, si es necesario
+      redirect_to user_applications_path(current_user), notice: 'Successfully applied!'
     else
-      render :new
+      redirect_to job_postings_path, alert: 'Application failed!'
     end
   end
+  
+  def index
+    @applications = current_user.applications
+  end
+  
   
   private
   

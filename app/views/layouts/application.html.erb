@@ -33,6 +33,7 @@
     </ul>
   </div>
 </nav>
+<%= current_user_photo if user_signed_in? %>
 
     <%= yield %>
   </body>
