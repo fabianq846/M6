@@ -6,15 +6,16 @@ def new
   end
   
   def create
-    @application = current_user.applications.new(job_posting_id: params[:job_posting_id])
+    @application = current_user.applications.new(application_params)
   
     if @application.save
-      # Envía la notificación a Esteban aquí, si es necesario
+      NotificationMailer.new_application(@application).deliver_now
       redirect_to user_applications_path(current_user), notice: 'Successfully applied!'
     else
       redirect_to job_postings_path, alert: 'Application failed!'
     end
   end
+  
   
   def index
     @applications = current_user.applications
@@ -25,5 +26,5 @@ def new
   
   def application_params
     params.require(:application).permit(:message, :job_offer_id)
+  end
 end
-

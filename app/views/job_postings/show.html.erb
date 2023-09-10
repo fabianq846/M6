@@ -9,5 +9,6 @@
   <%= button_to "Destroy this job posting", @job_posting, method: :delete %>
 </div>
 <% if current_user && !current_user.job_postings.include?(@job_posting) %>
-  <%= button_to 'Postular', apply_job_posting_path(@job_posting), method: :post %>
+<%= link_to "Postular", new_application_path(job_posting_id: @job_posting.id), class: 'btn btn-primary' %>
+
 <% end %>

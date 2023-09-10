@@ -23,8 +23,9 @@ class JobPostingsController < ApplicationController
 
   # GET /job_postings/new
   def new
-    @job_posting = JobPosting.new
+    @application = Application.new(job_posting_id: params[:job_posting_id])
   end
+  
 
   # GET /job_postings/1/edit
   def edit
